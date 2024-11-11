@@ -42,6 +42,43 @@ print(rmse, r2)
 
 from sklearn.linear_model import LinearRegression
 
+# x values have to be in a two-dimensional array
+# because we can have more coefficients
+
+X = df1[['x']].values
+y = df1['y'].values
+
+
+lr = LinearRegression().fit(X, y)
+
+print(lr.coef_, lr.intercept_)
+
+# a - coefficient
+# b - intercept
+
+xl = np.linspace(-0.5, 10.5, 500)
+
+# reshape(-1, 1) converts a one-dimensional array into a two-dimensional
+
+yl = lr.predict(xl.reshape(-1, 1))
+
+plt.plot(X[:,0], y, 'g.')
+plt.plot(xl, yl, 'r-')
+
+# calculates r2 score
+print(lr.score(X,y))
+
+# returns an original array (the before reshape shape)
+print(xl.reshape(-1, 1).shape)
+
+
+
+
+
+
+
+
+
 
 
 
